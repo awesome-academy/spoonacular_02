@@ -1,4 +1,4 @@
-package com.sun.cookbook.screen.search
+package com.sun.cookbook.screen.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.sun.cookbook.R
 
-class SearchFragment : Fragment() {
+class DetailRecipeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_detail_recipe, container, false)
     }
 
     companion object {
-        fun newInstance() = SearchFragment()
+        fun instance() = DetailRecipeFragment()
     }
 }
