@@ -3,6 +3,7 @@ package com.sun.cookbook.data.source.remote
 import com.sun.cookbook.data.source.RecipeDataSource
 import com.sun.cookbook.data.source.remote.fetchjson.GetJsonFromUrl
 import com.sun.cookbook.utils.Constant
+import com.sun.cookbook.utils.TypeModel
 
 class RecipeRemoteDataSource : RecipeDataSource.Remote {
 
@@ -12,7 +13,16 @@ class RecipeRemoteDataSource : RecipeDataSource.Remote {
                 Constant.NUMBER_RECIPE +
                 Constant.API_KEY +
                 Constant.API_VALUE
-        GetJsonFromUrl(Constant.RECIPE_SLIDE, listener).execute(stringUrl)
+        GetJsonFromUrl(TypeModel.RECIPE_SLIDE, listener).execute(stringUrl)
+    }
+
+    override fun <T> getDataRecipeRecyclerView(listener: OnFetchDataJsonListener<T>) {
+        val stringUrl = Constant.BASE_URL +
+                Constant.RANDOM_RECIPE +
+                Constant.NUMBER_RECIPE_TEN +
+                Constant.API_KEY +
+                Constant.API_VALUE
+        GetJsonFromUrl(TypeModel.RECIPE_RECYCLERVIEW, listener).execute(stringUrl)
     }
 
     private object Holder {

@@ -1,5 +1,6 @@
 package com.sun.cookbook.data.source
 
+import com.sun.cookbook.data.model.Recipe
 import com.sun.cookbook.data.model.RecipeSlide
 import com.sun.cookbook.data.source.local.RecipeLocalDataSource
 import com.sun.cookbook.data.source.remote.OnFetchDataJsonListener
@@ -11,6 +12,9 @@ class RecipeRepository private constructor(
 ) {
     fun getRecipeSlide(listener: OnFetchDataJsonListener<MutableList<RecipeSlide>>) {
         remote.getDataRecipeSlide(listener)
+    }
+    fun getRecipeRecyclerView(listener: OnFetchDataJsonListener<MutableList<Recipe>>) {
+        remote.getDataRecipeRecyclerView(listener)
     }
 
     companion object {

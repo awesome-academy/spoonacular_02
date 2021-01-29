@@ -15,9 +15,9 @@ class MainMenuViewPagerAdapter(fragmentManager: FragmentManager, behavior: Int) 
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            MenuNumber.SEARCH.pageNumber -> SearchFragment()
-            MenuNumber.HOME.pageNumber -> HomeFragment()
-            else -> FavouriteFragment()
+            MenuNumber.SEARCH.pageNumber -> SearchFragment.newInstance()
+            MenuNumber.HOME.pageNumber -> HomeFragment.newInstance()
+            else -> FavouriteFragment.newInstance()
         }
     }
 

@@ -7,5 +7,6 @@ interface RecipeDataSource {
     interface Local
     interface Remote {
         fun <T> getDataRecipeSlide(listener: OnFetchDataJsonListener<T>)
+        fun <T> getDataRecipeRecyclerView(listener: OnFetchDataJsonListener<T>)
     }
 }
