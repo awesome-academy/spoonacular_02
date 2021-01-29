@@ -1,7 +1,6 @@
 package com.sun.cookbook.utils
 
 import com.sun.cookbook.BuildConfig
-import com.sun.cookbook.utils.Constant.API_VALUE
 
 object Constant {
     const val BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes"
