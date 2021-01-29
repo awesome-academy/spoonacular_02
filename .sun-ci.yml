@@ -10,7 +10,7 @@ jobs:
   environment:
     ROOM_ID: "92773689"
       # Insert the chatwork accounts which you want to mention when the pull request was verified
-    MEMBERS: "[To:5346598][DN-OE39-Android] Nguyen Phuoc Phong"
+    MEMBERS: "[To:5346598] Nguyen Phuoc Phong"
   cache:
   - key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
     paths:
