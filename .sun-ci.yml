@@ -20,7 +20,7 @@ jobs:
   - echo "failed (pray)(sweat);(" > .build_status
   - echo "(devil)" > .build_icon
   script:
- # - ./gradlew lint test
+  - ./gradlew lint test
   - echo "successful (F)(F)(F)" > .build_status
   - echo "(handshake)" > .build_icon
   artifacts:
