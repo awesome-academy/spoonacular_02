@@ -10,7 +10,7 @@
         android:id="@+id/viewPagerSlideHome"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_7"
         app:layout_constraintDimensionRatio="334:200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_10"
         android:text="@string/top_recipes"
         android:textAllCaps="true"
         android:textColor="@color/color_F28F73"
@@ -33,12 +33,13 @@
         android:id="@+id/recyclerViewHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_55"
+        android:layout_marginTop="@dimen/dp_35"
         android:orientation="horizontal"
+        tools:listitem="@layout/item_recipe"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewPagerSlideHome"
         app:layout_constraintWidth_percent="0.93"
-        tools:itemCount="5" />
+        tools:itemCount="10" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,4 +11,5 @@
     <string name="favourite">Favourite</string>
     <string name="top_recipes">Top recipes</string>
     <string name="ready_in_minute">Ready in Minute : %s</string>
+    <string name="spoonacular_score">Spoonacular score : %s</string>
 </resources>

@@ -24,7 +24,7 @@
         android:layout_marginTop="@dimen/dp_5"
         android:layout_marginEnd="@dimen/dp_9"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/sp_12"
         android:textStyle="bold"
         android:translationZ="@dimen/dp_10"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_9"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/sp_10"
         android:textStyle="italic"
         android:translationZ="@dimen/dp_10"
@@ -50,7 +50,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImageSlide"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/dp_10"
         app:cardCornerRadius="@dimen/dp_10"
@@ -67,4 +67,3 @@
             tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
