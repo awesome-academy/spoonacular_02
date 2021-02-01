@@ -18,7 +18,7 @@ import com.sun.cookbook.data.source.RecipeRepository
 import com.sun.cookbook.screen.detail.DetailRecipeFragment
 import com.sun.cookbook.screen.home.recyclerview.RecipeAdapter
 import com.sun.cookbook.screen.home.slide.HomeSlideAdapter
-import com.sun.cookbook.utils.replaceFragment
+import com.sun.cookbook.utils.addFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), ViewContactHome.View {
@@ -31,7 +31,7 @@ class HomeFragment : Fragment(), ViewContactHome.View {
     }
     private val adapter by lazy {
         RecipeAdapter {
-            replaceFragment(DetailRecipeFragment.instance(), R.id.mainContainer)
+            addFragment(DetailRecipeFragment.newInstance(it.id), R.id.mainContainer)
         }
     }
 
@@ -79,8 +79,8 @@ class HomeFragment : Fragment(), ViewContactHome.View {
     @SuppressLint("WrongConstant")
     private fun initSlideAdapter(applyViewPageSlider: ViewPager2) {
         applyViewPageSlider.apply {
-            adapter = HomeSlideAdapter(recipeSlide, applyViewPageSlider) {
-                replaceFragment(DetailRecipeFragment.instance(), R.id.mainContainer)
+            adapter = HomeSlideAdapter(recipeSlide) {
+                addFragment(DetailRecipeFragment.newInstance(it.id), R.id.mainContainer)
             }
             clipToPadding = false
             clipChildren = false

@@ -7,13 +7,8 @@ import com.sun.cookbook.screen.base.BasePresenter
 interface ViewContactHome {
 
     interface View {
-        fun getRecipeSlideSuccess(
-            listRecipeSlide: MutableList<RecipeSlide>
-        )
-        fun getRecipeSuccess(
-            recipes: MutableList<Recipe>
-        )
-
+        fun getRecipeSlideSuccess(listRecipeSlide: MutableList<RecipeSlide>)
+        fun getRecipeSuccess(recipes: MutableList<Recipe>)
         fun onError(exception: Exception?)
     }
 

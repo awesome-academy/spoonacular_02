@@ -17,7 +17,7 @@ class ItemSlideViewHolder(itemView: View, private val onSlideClicked: (RecipeSli
             Glide.with(context).load(recipeSlide.image)
                 .into(imageSlide)
             textTitleDish.text = recipeSlide.title
-            textTimeCook.text = context.getString(R.string.ready_in_minute,recipeSlide.timeCook)
+            textTimeCook.text = context.getString(R.string.ready_in_minute, recipeSlide.timeCook)
             setOnClickListener {
                 onSlideClicked.invoke(recipeSlide)
             }

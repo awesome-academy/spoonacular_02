@@ -1,7 +1,10 @@
 package com.sun.cookbook.data.source.remote.fetchjson
+
+import com.sun.cookbook.data.model.RecipeDetailEntry
 import com.sun.cookbook.data.model.RecipeEntry
 import com.sun.cookbook.data.model.RecipeSlideEntry
 import com.sun.cookbook.utils.TypeModel
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -30,46 +33,68 @@ class ParseDataWithJson {
         return stringBuilder.toString()
     }
 
-    fun parseJsonToData(jsonObject: JSONObject?, typeModel: TypeModel): Any {
-        val data = mutableListOf<Any>()
-        try {
-            when (typeModel) {
-                TypeModel.RECIPE_SLIDE -> {
-                    val jsonArray = jsonObject?.getJSONArray(RecipeSlideEntry.LIST_RECIPE)
-                    for (i in 0 until (jsonArray?.length() ?: 0)) {
-                        val jsonObjects = jsonArray?.getJSONObject(i)
-                        val item = parseJsonToObject(jsonObjects, typeModel)
-                        item?.let { data.add(item) }
-                    }
-                }
-                TypeModel.RECIPE -> {
-                    val jsonArray = jsonObject?.getJSONArray(RecipeEntry.LIST_RECIPE)
-                    for (i in 0 until (jsonArray?.length() ?: 0)) {
-                        val jsonObjects = jsonArray?.getJSONObject(i)
-                        val item = parseJsonToObject(jsonObjects, typeModel)
-                        item?.let { data.add(item) }
-                    }
-                }
+    fun parseJsonToData(jsonString: String, typeModel: TypeModel): Any? {
+
+        return when (typeModel) {
+            TypeModel.RECIPE_SLIDE -> {
+                parseJsonToArray(
+                    JSONObject(jsonString).getJSONArray(RecipeSlideEntry.LIST_RECIPE), typeModel
+                )
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
+            TypeModel.RECIPE -> {
+                parseJsonToArray(
+                    JSONObject(jsonString).getJSONArray(RecipeEntry.LIST_RECIPE), typeModel
+                )
+            }
+            TypeModel.INGREDIENT -> {
+                parseJsonToArray(
+                    JSONObject(jsonString).getJSONArray(RecipeDetailEntry.INGREDIENT_LIST),
+                    typeModel
+                )
+            }
+            TypeModel.NUTRIENT -> {
+                parseJsonToArray(
+                    JSONObject(jsonString).getJSONArray(RecipeDetailEntry.NUTRITION_LIST), typeModel
+                )
+            }
+            TypeModel.STEP -> {
+                parseJsonToArray(
+                    JSONObject(jsonString).getJSONArray((RecipeDetailEntry.STEP_LISTS)), typeModel
+                )
+            }
+            TypeModel.RECIPE_DETAIL -> {
+                parseJsonToObject(JSONObject(jsonString), typeModel)
+            }
         }
-        return data
     }
 
     private fun parseJsonToObject(jsonObject: JSONObject?, typeModel: TypeModel): Any? {
         return try {
             val parser = ParseJsonToModel()
-            when(typeModel){
+            when (typeModel) {
                 TypeModel.RECIPE_SLIDE -> jsonObject?.let(parser::parseJsonToRecipeSlide)
                 TypeModel.RECIPE -> jsonObject?.let(parser::parseJsonToRecipe)
+                TypeModel.RECIPE_DETAIL -> jsonObject?.let(parser::parseJsonToRecipeDetail)
+                TypeModel.INGREDIENT -> jsonObject?.let(parser::parseJsonToIngredient)
+                TypeModel.NUTRIENT -> jsonObject?.let(parser::parseJsonToNutrient)
+                TypeModel.STEP -> jsonObject?.let(parser::parseJsonToStep)
             }
         } catch (e: Exception) {
             null
         }
     }
 
+    fun parseJsonToArray(jsonArray: JSONArray?, typeModel: TypeModel): Any {
+        val data = mutableListOf<Any?>()
+        for (i in 0 until (jsonArray?.length() ?: 0)) {
+            val jsonObject = jsonArray?.getJSONObject(i)
+            data.add(parseJsonToObject(jsonObject, typeModel))
+        }
+        return data.filterNotNull()
+    }
+
     companion object {
+
         private const val TIME_OUT = 20000
         private const val METHOD_GET = "GET"
     }
