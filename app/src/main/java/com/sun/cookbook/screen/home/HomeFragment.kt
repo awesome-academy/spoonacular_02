@@ -12,9 +12,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.sun.cookbook.R
+import com.sun.cookbook.data.model.Recipe
 import com.sun.cookbook.data.model.RecipeSlide
 import com.sun.cookbook.data.source.RecipeRepository
 import com.sun.cookbook.screen.detail.DetailRecipeFragment
+import com.sun.cookbook.screen.home.recyclerview.RecipeAdapter
 import com.sun.cookbook.screen.home.slide.HomeSlideAdapter
 import com.sun.cookbook.utils.replaceFragment
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -27,6 +29,11 @@ class HomeFragment : Fragment(), ViewContactHome.View {
     private val homePresenter: ViewContactHome.Presenter by lazy {
         HomePresenter(RecipeRepository.getInstance())
     }
+    private val adapter by lazy {
+        RecipeAdapter {
+            replaceFragment(DetailRecipeFragment.instance(), R.id.mainContainer)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,24 +42,37 @@ class HomeFragment : Fragment(), ViewContactHome.View {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initPresenter()
+    }
+
     override fun getRecipeSlideSuccess(listRecipeSlide: MutableList<RecipeSlide>) {
         recipeSlide = listRecipeSlide
         viewPagerSlideHome?.let { initSlideAdapter(viewPagerSlideHome) }
     }
 
-    override fun onError(exception: Exception?) {
-        Toast.makeText(context, exception?.message, Toast.LENGTH_SHORT).show()
+    override fun getRecipeSuccess(recipes: MutableList<Recipe>) {
+        adapter.updateData(recipes)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initPresenter()
+    override fun onError(exception: Exception?) {
+        if (exception == null) Toast.makeText(context, null, Toast.LENGTH_SHORT).show()
+        else Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
     }
 
     private fun initPresenter() {
         homePresenter.apply {
             setView(this@HomeFragment)
             onStart()
+        }
+    }
+
+    private fun initView() {
+        recyclerViewHome.apply {
+            setHasFixedSize(true)
+            adapter = this@HomeFragment.adapter
         }
     }
 
