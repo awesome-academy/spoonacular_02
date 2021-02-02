@@ -63,18 +63,20 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_25"
                     android:alpha="0.5"
-                    app:layout_constraintWidth_percent="0.5"
                     android:background="@drawable/bg_shape_detail"
                     android:translationZ="@dimen/dp_10"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.5" />
 
                 <TextView
                     android:id="@+id/textTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp_13"
+                    android:textSize="@dimen/sp_15"
                     android:textStyle="italic"
                     android:translationZ="@dimen/dp_10"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -159,6 +161,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_18"
             android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/similars_recipe"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
@@ -175,7 +179,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textSimilarRecipe"
             app:layout_constraintWidth_percent="0.93"
-            tools:itemCount="5"
             tools:listitem="@layout/item_recipe" />
 
         <FrameLayout

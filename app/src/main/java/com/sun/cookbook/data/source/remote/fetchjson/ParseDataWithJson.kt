@@ -1,7 +1,9 @@
 package com.sun.cookbook.data.source.remote.fetchjson
 
+import android.util.Log
 import com.sun.cookbook.data.model.RecipeDetailEntry
 import com.sun.cookbook.data.model.RecipeEntry
+import com.sun.cookbook.data.model.RecipeSimilarEntry
 import com.sun.cookbook.data.model.RecipeSlideEntry
 import com.sun.cookbook.utils.TypeModel
 import org.json.JSONArray
@@ -59,11 +61,16 @@ class ParseDataWithJson {
             }
             TypeModel.STEP -> {
                 parseJsonToArray(
-                    JSONObject(jsonString).getJSONArray((RecipeDetailEntry.STEP_LISTS)), typeModel
+                    JSONObject(jsonString).getJSONArray(RecipeDetailEntry.STEP_LISTS), typeModel
                 )
             }
             TypeModel.RECIPE_DETAIL -> {
                 parseJsonToObject(JSONObject(jsonString), typeModel)
+            }
+            TypeModel.RECIPE_SIMILAR -> {
+                parseJsonToArray(
+                    JSONArray(jsonString),typeModel
+                )
             }
         }
     }
@@ -78,6 +85,7 @@ class ParseDataWithJson {
                 TypeModel.INGREDIENT -> jsonObject?.let(parser::parseJsonToIngredient)
                 TypeModel.NUTRIENT -> jsonObject?.let(parser::parseJsonToNutrient)
                 TypeModel.STEP -> jsonObject?.let(parser::parseJsonToStep)
+                TypeModel.RECIPE_SIMILAR -> jsonObject?.let(parser::parseJsonToRecipeSimilar)
             }
         } catch (e: Exception) {
             null

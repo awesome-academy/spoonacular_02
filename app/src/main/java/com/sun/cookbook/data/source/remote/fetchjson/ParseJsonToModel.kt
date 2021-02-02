@@ -87,4 +87,12 @@ class ParseJsonToModel {
                 getString(StepEntry.STEP)
             )
         }
+    fun parseJsonToRecipeSimilar(jsonObject: JSONObject?): RecipeSimilar? =
+        jsonObject?.run {
+            RecipeSimilar(
+                getInt(RecipeSimilarEntry.ID),
+                getString(RecipeSimilarEntry.TITLE),
+                getString(RecipeSimilarEntry.TIME_COOK)
+            )
+        }
 }

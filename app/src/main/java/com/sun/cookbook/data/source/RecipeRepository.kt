@@ -2,6 +2,7 @@ package com.sun.cookbook.data.source
 
 import com.sun.cookbook.data.model.Recipe
 import com.sun.cookbook.data.model.RecipeDetail
+import com.sun.cookbook.data.model.RecipeSimilar
 import com.sun.cookbook.data.model.RecipeSlide
 import com.sun.cookbook.data.source.local.RecipeLocalDataSource
 import com.sun.cookbook.data.source.remote.OnFetchDataJsonListener
@@ -19,6 +20,14 @@ class RecipeRepository private constructor(
         remote.getDataRecipe(listener)
     }
 
+    fun getRecipeDetail(idRecipe: Int, listener: OnFetchDataJsonListener<RecipeDetail>) {
+        remote.getDataRecipeDetail(idRecipe, listener)
+    }
+
+    fun getRecipeSimilar(idRecipe: Int, listener: OnFetchDataJsonListener<MutableList<RecipeSimilar>>) {
+        remote.getDataRecipeSimilar(idRecipe, listener)
+    }
+
     companion object {
         private var INSTANCE: RecipeRepository? = null
         fun getInstance(): RecipeRepository {
@@ -29,9 +38,5 @@ class RecipeRepository private constructor(
                 ).also { INSTANCE = it }
             }
         }
-    }
-
-    fun getRecipeDetail(idRecipe: Int, listener: OnFetchDataJsonListener<RecipeDetail>) {
-        remote.getDataRecipeDetail(idRecipe, listener)
     }
 }
