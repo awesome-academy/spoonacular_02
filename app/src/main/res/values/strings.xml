@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BookCook</string>
     <string name="title_header">cookbook.com</string>
-    <string name="step">Steps :</string>
+    <string name="step">Step : %s</string>
     <string name="top_recipe">Top recipes</string>
     <string name="ingredient">ingredient</string>
     <string name="nutrient">nutrient</string>
@@ -12,5 +12,4 @@
     <string name="top_recipes">Top recipes</string>
     <string name="ready_in_minute">Ready in Minute : %s</string>
     <string name="spoonacular_score">Spoonacular score : %s</string>
-    <string name="steps">Steps :</string>
 </resources>
