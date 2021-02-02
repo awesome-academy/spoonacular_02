@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
 fun AppCompatActivity.addFragment(fragment: Fragment, id: Int) {
-    supportFragmentManager.inTransaction { add(id, fragment).addToBackStack(null) }
+    supportFragmentManager.inTransaction { add(id, fragment) }
 }
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, id: Int) {
@@ -18,11 +18,11 @@ fun AppCompatActivity.removeFragment(fragment: Fragment) {
 }
 
 fun Fragment.addFragment(fragment: Fragment, id: Int) {
-    fragmentManager?.inTransaction { add(id, fragment).addToBackStack(fragment.javaClass.simpleName) }
+    fragmentManager?.inTransaction { add(id, fragment).addToBackStack(null) }
 }
 
 fun Fragment.replaceFragment(fragment: Fragment, id: Int) {
-    fragmentManager?.inTransaction { replace(id, fragment).addToBackStack(fragment.javaClass.simpleName) }
+    fragmentManager?.inTransaction { replace(id, fragment).addToBackStack(null) }
 }
 
 fun Fragment.removeFragment(fragment: Fragment, id: Int) {

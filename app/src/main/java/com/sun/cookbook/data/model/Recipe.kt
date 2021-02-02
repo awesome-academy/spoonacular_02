@@ -13,6 +13,6 @@ object RecipeEntry {
     const val ID = "id"
     const val TITLE = "title"
     const val TIME_COOK = "readyInMinutes"
-    const val SCORE  = "spoonacularScore"
+    const val SCORE = "spoonacularScore"
     const val IMAGE = "image"
 }

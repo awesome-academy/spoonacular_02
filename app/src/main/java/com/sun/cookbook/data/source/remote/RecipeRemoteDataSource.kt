@@ -11,7 +11,7 @@ class RecipeRemoteDataSource : RecipeDataSource.Remote {
         val stringUrl = Constant.BASE_URL +
                 Constant.RANDOM_RECIPE +
                 Constant.NUMBER_RECIPE +
-                Constant.API_KEY +
+                Constant.API_KEY_RANDOM +
                 Constant.API_VALUE
         GetJsonFromUrl(TypeModel.RECIPE_SLIDE, listener).execute(stringUrl)
     }
@@ -20,9 +20,19 @@ class RecipeRemoteDataSource : RecipeDataSource.Remote {
         val stringUrl = Constant.BASE_URL +
                 Constant.RANDOM_RECIPE +
                 Constant.NUMBER_RECIPE_TEN +
-                Constant.API_KEY +
+                Constant.API_KEY_RANDOM +
                 Constant.API_VALUE
         GetJsonFromUrl(TypeModel.RECIPE, listener).execute(stringUrl)
+    }
+
+    override fun <T> getDataRecipeDetail(idRecipe: Int, listener: OnFetchDataJsonListener<T>) {
+        val stringUrl = Constant.BASE_URL +
+                idRecipe +
+                Constant.RECIPE_INFORMATION +
+                Constant.API_KEY_DETAIL +
+                Constant.API_VALUE +
+                Constant.NUTRIENT_TRUE
+        GetJsonFromUrl(TypeModel.RECIPE_DETAIL, listener).execute(stringUrl)
     }
 
     private object Holder {
