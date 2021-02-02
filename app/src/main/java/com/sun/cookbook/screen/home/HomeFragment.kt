@@ -58,8 +58,7 @@ class HomeFragment : Fragment(), ViewContactHome.View {
     }
 
     override fun onError(exception: Exception?) {
-        if (exception == null) Toast.makeText(context, null, Toast.LENGTH_SHORT).show()
-        else Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, exception?.message, Toast.LENGTH_SHORT).show()
     }
 
     private fun initPresenter() {
