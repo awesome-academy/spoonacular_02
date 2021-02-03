@@ -96,4 +96,13 @@ class ParseJsonToModel {
                 getString(RecipeSimilarEntry.TIME_COOK)
             )
         }
+
+    fun parseJsonToIngredientDetail(jsonObject: JSONObject?): RecipeByIngredient? =
+        jsonObject?.run {
+            RecipeByIngredient(
+                getInt(RecipeByIngredientEntry.ID),
+                getString(RecipeByIngredientEntry.TITLE),
+                getString(RecipeByIngredientEntry.IMAGE)
+            )
+        }
 }

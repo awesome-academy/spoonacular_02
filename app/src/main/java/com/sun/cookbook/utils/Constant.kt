@@ -7,6 +7,7 @@ object Constant {
     const val BASE_URL_IMAGE_RECIPE = "https://spoonacular.com/recipeImages/"
     const val IMAGE_RECIPE_SIMILAR = "-556x370.jpg"
     const val BASE_URL_IMAGE_INGREDIENT = "https://spoonacular.com/cdn/ingredients_100x100/"
+    const val BY_INGREDIENT= "findByIngredients?ingredients="
     const val NULL_STRING = "null"
     const val NUMBER_RECIPE = "?number=5"
     const val NUMBER_RECIPE_TEN = "?number=10"
