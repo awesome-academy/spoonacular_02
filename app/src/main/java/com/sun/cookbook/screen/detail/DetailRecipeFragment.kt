@@ -11,10 +11,12 @@ import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.sun.cookbook.R
 import com.sun.cookbook.data.model.RecipeDetail
+import com.sun.cookbook.data.model.RecipeSimilar
 import com.sun.cookbook.data.model.Step
 import com.sun.cookbook.data.source.RecipeRepository
+import com.sun.cookbook.screen.detail.similar.RecipeSimilarAdapter
 import com.sun.cookbook.screen.detail.step.StepPagerAdapter
-import com.sun.cookbook.utils.Constant
+import com.sun.cookbook.utils.addFragment
 import kotlinx.android.synthetic.main.fragment_detail_recipe.*
 import kotlinx.android.synthetic.main.fragment_detail_recipe.textTitleDish
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -24,6 +26,11 @@ class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
 
     private val detailPresenter: ViewContactDetail.Presenter by lazy {
         DetailPresenter(RecipeRepository.getInstance())
+    }
+    private val adapter by lazy {
+        RecipeSimilarAdapter {
+            addFragment(DetailRecipeFragment.newInstance(it.id), R.id.mainContainer)
+        }
     }
 
     override fun onCreateView(
@@ -35,6 +42,7 @@ class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initSimilarRecyclerViewAdapter()
         initPresenter()
         imgBack.setOnClickListener {
             fragmentManager?.popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -47,8 +55,12 @@ class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
             .into(imageDish)
         textTitleDish.text = recipes.title
         textTime.text = context?.getString(R.string.ready_in_minute, recipes.timeCook.toString())
-        recipes.step?.run {
-            initStep(this)
+        recipes.step?.let(::initStep)
+    }
+
+    override fun getRecipeSimilarSuccess(recipeSimilar: MutableList<RecipeSimilar>) {
+        recipeSimilar.let {
+            adapter.updateData(it)
         }
     }
 
@@ -61,6 +73,7 @@ class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
             setView(this@DetailRecipeFragment)
             arguments?.getInt(BUNDLE_ID_RECIPE)?.let {
                 getRecipes(it)
+                getRecipeSimilar(it)
             }
             onStart()
         }
@@ -70,11 +83,18 @@ class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
         viewPagerStep.adapter = StepPagerAdapter(step)
     }
 
+    private fun initSimilarRecyclerViewAdapter() {
+        recyclerViewSimilarRecipe.apply {
+            setHasFixedSize(true)
+            adapter = this@DetailRecipeFragment.adapter
+        }
+    }
+
     companion object {
 
         private const val BUNDLE_ID_RECIPE = "BUNDLE_ID_RECIPE"
 
-        fun newInstance(idRecipe: Int) = DetailRecipeFragment().apply {
+        fun newInstance(idRecipe: Int?) = DetailRecipeFragment().apply {
             arguments = bundleOf(BUNDLE_ID_RECIPE to idRecipe)
         }
     }

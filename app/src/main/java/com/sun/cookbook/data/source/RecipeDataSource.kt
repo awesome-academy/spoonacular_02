@@ -8,5 +8,6 @@ interface RecipeDataSource {
         fun <T> getDataRecipeSlide(listener: OnFetchDataJsonListener<T>)
         fun <T> getDataRecipe(listener: OnFetchDataJsonListener<T>)
         fun <T> getDataRecipeDetail(idRecipe: Int, listener: OnFetchDataJsonListener<T>)
+        fun <T> getDataRecipeSimilar(idRecipeSimilar: Int, listener: OnFetchDataJsonListener<T>)
     }
 }

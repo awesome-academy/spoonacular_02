@@ -1,11 +1,11 @@
 package com.sun.cookbook.data.model
 
 data class Recipe(
-    val id: Int,
-    val title: String,
-    val timeCook: String,
-    val score: Double,
-    val image: String
+    val id: Int?,
+    val title: String?,
+    val timeCook: String?,
+    val score: Double?,
+    val image: String?
 )
 
 object RecipeEntry {

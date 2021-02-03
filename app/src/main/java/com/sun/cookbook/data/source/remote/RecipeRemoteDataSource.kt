@@ -1,5 +1,6 @@
 package com.sun.cookbook.data.source.remote
 
+import com.sun.cookbook.data.model.RecipeSimilar
 import com.sun.cookbook.data.source.RecipeDataSource
 import com.sun.cookbook.data.source.remote.fetchjson.GetJsonFromUrl
 import com.sun.cookbook.utils.Constant
@@ -33,6 +34,15 @@ class RecipeRemoteDataSource : RecipeDataSource.Remote {
                 Constant.API_VALUE +
                 Constant.NUTRIENT_TRUE
         GetJsonFromUrl(TypeModel.RECIPE_DETAIL, listener).execute(stringUrl)
+    }
+
+    override fun <T> getDataRecipeSimilar(idRecipeSimilar: Int, listener: OnFetchDataJsonListener<T>) {
+        val stringUrl = Constant.BASE_URL +
+                idRecipeSimilar +
+                Constant.RECIPE_SIMILAR +
+                Constant.API_KEY_DETAIL +
+                Constant.API_VALUE
+        GetJsonFromUrl(TypeModel.RECIPE_SIMILAR, listener).execute(stringUrl)
     }
 
     private object Holder {
