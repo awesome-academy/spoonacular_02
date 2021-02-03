@@ -4,8 +4,8 @@ data class RecipeDetail(
     val title: String?,
     val timeCook: Double?,
     val image: String?,
-    val ingredient: MutableList<Ingredient>?,
-    val nutrient: MutableList<Nutrient>?,
+    val ingredient: ArrayList<Ingredient>?,
+    val nutrient: ArrayList<Nutrient>?,
     val step: MutableList<Step>?
 )
 

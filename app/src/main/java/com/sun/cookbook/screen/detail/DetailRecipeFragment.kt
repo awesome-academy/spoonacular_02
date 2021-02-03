@@ -14,13 +14,13 @@ import com.sun.cookbook.data.model.RecipeDetail
 import com.sun.cookbook.data.model.RecipeSimilar
 import com.sun.cookbook.data.model.Step
 import com.sun.cookbook.data.source.RecipeRepository
+import com.sun.cookbook.screen.detail.ingredient.IngredientFragment
+import com.sun.cookbook.screen.detail.nutrient.NutrientFragment
 import com.sun.cookbook.screen.detail.similar.RecipeSimilarAdapter
 import com.sun.cookbook.screen.detail.step.StepPagerAdapter
 import com.sun.cookbook.utils.addFragment
 import kotlinx.android.synthetic.main.fragment_detail_recipe.*
 import kotlinx.android.synthetic.main.fragment_detail_recipe.textTitleDish
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_recipe.*
 
 class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
 
@@ -56,6 +56,16 @@ class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
         textTitleDish.text = recipes.title
         textTime.text = context?.getString(R.string.ready_in_minute, recipes.timeCook.toString())
         recipes.step?.let(::initStep)
+        textIngredient.setOnClickListener {
+            recipes.ingredient?.let {
+                IngredientFragment.newInstance(it).show(childFragmentManager, null)
+            }
+        }
+        textNutrient.setOnClickListener {
+            recipes.nutrient?.let {
+                NutrientFragment.newInstance(it).show(childFragmentManager, null)
+            }
+        }
     }
 
     override fun getRecipeSimilarSuccess(recipeSimilar: MutableList<RecipeSimilar>) {

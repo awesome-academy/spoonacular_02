@@ -34,12 +34,12 @@ class ParseJsonToModel {
                 val ingredient = parseDataWithJson.parseJsonToArray(
                     getJSONArray(RecipeDetailEntry.INGREDIENT_LIST),
                     TypeModel.INGREDIENT
-                ) as MutableList<Ingredient>
+                ) as ArrayList<Ingredient>
 
                 val nutrient = parseDataWithJson.parseJsonToArray(
                     getJSONObject(RecipeDetailEntry.NUTRITION).getJSONArray(RecipeDetailEntry.NUTRITION_LIST),
                     TypeModel.NUTRIENT
-                ) as MutableList<Nutrient>
+                ) as ArrayList<Nutrient>
 
                 val step = parseDataWithJson.parseJsonToArray(
                     getJSONArray(RecipeDetailEntry.ANALYZED_INSTRUCTIONS_LIST).getJSONObject(0)
@@ -87,6 +87,7 @@ class ParseJsonToModel {
                 getString(StepEntry.STEP)
             )
         }
+
     fun parseJsonToRecipeSimilar(jsonObject: JSONObject?): RecipeSimilar? =
         jsonObject?.run {
             RecipeSimilar(
