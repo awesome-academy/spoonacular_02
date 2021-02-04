@@ -69,7 +69,12 @@ class ParseDataWithJson {
             }
             TypeModel.RECIPE_SIMILAR -> {
                 parseJsonToArray(
-                    JSONArray(jsonString),typeModel
+                    JSONArray(jsonString), typeModel
+                )
+            }
+            TypeModel.DETAIL_INGREDIENT -> {
+                parseJsonToArray(
+                    JSONArray(jsonString), typeModel
                 )
             }
         }
@@ -86,6 +91,7 @@ class ParseDataWithJson {
                 TypeModel.NUTRIENT -> jsonObject?.let(parser::parseJsonToNutrient)
                 TypeModel.STEP -> jsonObject?.let(parser::parseJsonToStep)
                 TypeModel.RECIPE_SIMILAR -> jsonObject?.let(parser::parseJsonToRecipeSimilar)
+                TypeModel.DETAIL_INGREDIENT -> jsonObject?.let(parser::parseJsonToIngredientDetail)
             }
         } catch (e: Exception) {
             null

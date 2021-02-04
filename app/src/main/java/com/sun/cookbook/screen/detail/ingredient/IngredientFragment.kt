@@ -8,14 +8,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sun.cookbook.R
 import com.sun.cookbook.data.model.Ingredient
 import com.sun.cookbook.screen.ingredient.IngredientDetailFragment
-import com.sun.cookbook.utils.replaceFragment
+import com.sun.cookbook.screen.main.MainActivity
+import com.sun.cookbook.utils.addFragment
 import kotlinx.android.synthetic.main.fragment_bottom_sheet_ingredient.*
 
 class IngredientFragment : BottomSheetDialogFragment() {
 
     private val adapter by lazy {
-        IngredientAdapter() {
-            replaceFragment(IngredientDetailFragment(), R.id.mainContainer)
+        IngredientAdapter {
+            (activity as? MainActivity)?.addFragment(
+                IngredientDetailFragment.newInstance(it),
+                R.id.mainContainer
+            )
         }
     }
 

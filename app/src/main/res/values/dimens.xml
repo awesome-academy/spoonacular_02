@@ -30,6 +30,7 @@
     <dimen name="dp_55">55dp</dimen>
     <dimen name="dp_81">81dp</dimen>
     <dimen name="dp_90">90dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
     <dimen name="dp_137">137dp</dimen>
     <dimen name="dp_147">147dp</dimen>
     <dimen name="dp_180">180dp</dimen>

@@ -7,5 +7,6 @@ enum class TypeModel {
     INGREDIENT,
     NUTRIENT,
     STEP,
-    RECIPE_SIMILAR
+    RECIPE_SIMILAR,
+    DETAIL_INGREDIENT
 }
