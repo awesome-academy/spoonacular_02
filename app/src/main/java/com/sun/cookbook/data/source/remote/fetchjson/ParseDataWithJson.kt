@@ -1,10 +1,6 @@
 package com.sun.cookbook.data.source.remote.fetchjson
 
-import android.util.Log
-import com.sun.cookbook.data.model.RecipeDetailEntry
-import com.sun.cookbook.data.model.RecipeEntry
-import com.sun.cookbook.data.model.RecipeSimilarEntry
-import com.sun.cookbook.data.model.RecipeSlideEntry
+import com.sun.cookbook.data.model.*
 import com.sun.cookbook.utils.TypeModel
 import org.json.JSONArray
 import org.json.JSONObject

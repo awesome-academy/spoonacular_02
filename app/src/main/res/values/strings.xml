@@ -13,4 +13,9 @@
     <string name="top_recipes">Top recipes</string>
     <string name="ready_in_minute">Ready in Minute : %s</string>
     <string name="spoonacular_score">Spoonacular score : %s</string>
+    <string name="by_name">by name</string>
+    <string name="by_ingredient">by ingredient</string>
+    <string name="found_i_results">Found %s results</string>
+    <string name="type_ingrediens">Type ingredients…</string>
+    <string name="type_recipe">Type recipe…</string>
 </resources>
