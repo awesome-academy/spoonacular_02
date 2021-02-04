@@ -14,6 +14,8 @@ import com.sun.cookbook.data.model.RecipeDetail
 import com.sun.cookbook.data.model.RecipeSimilar
 import com.sun.cookbook.data.model.Step
 import com.sun.cookbook.data.source.RecipeRepository
+import com.sun.cookbook.data.source.local.RecipeLocalDataSource
+import com.sun.cookbook.data.source.remote.RecipeRemoteDataSource
 import com.sun.cookbook.screen.detail.ingredient.IngredientFragment
 import com.sun.cookbook.screen.detail.nutrient.NutrientFragment
 import com.sun.cookbook.screen.detail.similar.RecipeSimilarAdapter
@@ -25,7 +27,12 @@ import kotlinx.android.synthetic.main.fragment_detail_recipe.textTitleDish
 class DetailRecipeFragment : Fragment(), ViewContactDetail.View {
 
     private val detailPresenter: ViewContactDetail.Presenter by lazy {
-        DetailPresenter(RecipeRepository.getInstance())
+        DetailPresenter(
+            RecipeRepository.getInstance(
+                RecipeRemoteDataSource.instance,
+                RecipeLocalDataSource.instance
+            )
+        )
     }
     private val adapter by lazy {
         RecipeSimilarAdapter {
