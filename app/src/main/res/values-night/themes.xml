@@ -20,4 +20,13 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorOnPrimary">@android:color/white</item>
     </style>
+    <!-- Customize them tabLayout -->
+    <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TabLayout</item>
+    </style>
+
+    <style name="ThemeOverlay.App.TabLayout" parent="">
+        <item name="colorPrimary">@android:color/black</item>
+        <item name="colorOnSurface">@android:color/black</item>
+    </style>
 </resources>
