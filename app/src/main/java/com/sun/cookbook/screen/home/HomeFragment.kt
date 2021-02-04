@@ -15,6 +15,8 @@ import com.sun.cookbook.R
 import com.sun.cookbook.data.model.Recipe
 import com.sun.cookbook.data.model.RecipeSlide
 import com.sun.cookbook.data.source.RecipeRepository
+import com.sun.cookbook.data.source.local.RecipeLocalDataSource
+import com.sun.cookbook.data.source.remote.RecipeRemoteDataSource
 import com.sun.cookbook.screen.detail.DetailRecipeFragment
 import com.sun.cookbook.screen.home.recyclerview.RecipeAdapter
 import com.sun.cookbook.screen.home.slide.HomeSlideAdapter
@@ -27,7 +29,12 @@ class HomeFragment : Fragment(), ViewContactHome.View {
     private var getCurrentItem = 0
     private var isChecked = false
     private val homePresenter: ViewContactHome.Presenter by lazy {
-        HomePresenter(RecipeRepository.getInstance())
+        HomePresenter(
+            RecipeRepository.getInstance(
+                RecipeRemoteDataSource.instance,
+                RecipeLocalDataSource.instance
+            )
+        )
     }
     private val adapter by lazy {
         RecipeAdapter {

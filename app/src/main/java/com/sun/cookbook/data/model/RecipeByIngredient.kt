@@ -7,6 +7,7 @@ data class RecipeByIngredient(
 )
 
 object RecipeByIngredientEntry {
+    const val RESULT = "results"
     const val ID = "id"
     const val TITLE = "title"
     const val IMAGE = "image"

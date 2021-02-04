@@ -11,7 +11,7 @@ class RecipeRemoteDataSource : RecipeDataSource.Remote {
         val stringUrl = Constant.BASE_URL +
                 Constant.RANDOM_RECIPE +
                 Constant.NUMBER_RECIPE +
-                Constant.API_KEY_RANDOM +
+                Constant.API_KEY +
                 Constant.API_VALUE
         GetJsonFromUrl(TypeModel.RECIPE_SLIDE, listener).execute(stringUrl)
     }
@@ -20,7 +20,7 @@ class RecipeRemoteDataSource : RecipeDataSource.Remote {
         val stringUrl = Constant.BASE_URL +
                 Constant.RANDOM_RECIPE +
                 Constant.NUMBER_RECIPE_TEN +
-                Constant.API_KEY_RANDOM +
+                Constant.API_KEY +
                 Constant.API_VALUE
         GetJsonFromUrl(TypeModel.RECIPE, listener).execute(stringUrl)
     }
@@ -55,9 +55,34 @@ class RecipeRemoteDataSource : RecipeDataSource.Remote {
                 Constant.BY_INGREDIENT +
                 nameIngredient +
                 Constant.NUMBER_RECIPE +
-                Constant.API_KEY_RANDOM +
+                Constant.API_KEY +
                 Constant.API_VALUE
         GetJsonFromUrl(TypeModel.DETAIL_INGREDIENT, listener).execute(stringUrl)
+    }
+
+    override fun <T> searchRecipeByName(name: String, listener: OnFetchDataJsonListener<T>) {
+        val stringUrl =
+            Constant.BASE_URL +
+                    Constant.BY_NAME +
+                    name.trim() +
+                    Constant.NUMBER_SEARCH +
+                    Constant.API_KEY +
+                    Constant.API_VALUE
+        GetJsonFromUrl(TypeModel.SEARCH_BY_NAME, listener).execute(stringUrl)
+    }
+
+    override fun <T> searchRecipeByIngredient(
+        ingredients: String,
+        listener: OnFetchDataJsonListener<T>
+    ) {
+        val stringUrl =
+            Constant.BASE_URL +
+                    Constant.BY_INGREDIENT +
+                    ingredients.replace("\\s".toRegex(), "%2C") +
+                    Constant.NUMBER_RECIPE +
+                    Constant.API_KEY +
+                    Constant.API_VALUE
+        GetJsonFromUrl(TypeModel.SEARCH_BY_INGREDIENT, listener).execute(stringUrl)
     }
 
     private object Holder {

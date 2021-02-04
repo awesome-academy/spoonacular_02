@@ -10,5 +10,7 @@ interface RecipeDataSource {
         fun <T> getDataRecipeDetail(idRecipe: Int, listener: OnFetchDataJsonListener<T>)
         fun <T> getDataRecipeSimilar(idRecipeSimilar: Int, listener: OnFetchDataJsonListener<T>)
         fun <T> getDataRecipeByIngredient(nameIngredient: String, listener: OnFetchDataJsonListener<T>)
+        fun <T> searchRecipeByIngredient(ingredients: String, listener: OnFetchDataJsonListener<T>)
+        fun <T> searchRecipeByName(name: String, listener: OnFetchDataJsonListener<T>)
     }
 }

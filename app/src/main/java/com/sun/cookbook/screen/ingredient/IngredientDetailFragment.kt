@@ -13,6 +13,8 @@ import com.sun.cookbook.R
 import com.sun.cookbook.data.model.Ingredient
 import com.sun.cookbook.data.model.RecipeByIngredient
 import com.sun.cookbook.data.source.RecipeRepository
+import com.sun.cookbook.data.source.local.RecipeLocalDataSource
+import com.sun.cookbook.data.source.remote.RecipeRemoteDataSource
 import com.sun.cookbook.screen.detail.DetailRecipeFragment
 import com.sun.cookbook.screen.ingredient.recyclerviewingredient.RecipeByIngredientAdapter
 import com.sun.cookbook.utils.Constant
@@ -25,11 +27,16 @@ import kotlinx.android.synthetic.main.item_ingredient.view.*
 class IngredientDetailFragment : Fragment(), ViewContactDetailIngredient.View {
 
     private val ingredientDetailPresenter: ViewContactDetailIngredient.Presenter by lazy {
-        IngredientDetailPresenter(RecipeRepository.getInstance())
+        IngredientDetailPresenter(
+            RecipeRepository.getInstance(
+                RecipeRemoteDataSource.instance,
+                RecipeLocalDataSource.instance
+            )
+        )
     }
 
     private val adapter by lazy {
-        RecipeByIngredientAdapter() {
+        RecipeByIngredientAdapter {
             addFragment(DetailRecipeFragment.newInstance(it.id), R.id.mainContainer)
         }
     }

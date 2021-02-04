@@ -73,6 +73,16 @@ class ParseDataWithJson {
                     JSONArray(jsonString), typeModel
                 )
             }
+            TypeModel.SEARCH_BY_INGREDIENT -> {
+                parseJsonToArray(
+                    JSONArray(jsonString), typeModel
+                )
+            }
+            TypeModel.SEARCH_BY_NAME -> {
+                parseJsonToArray(
+                    JSONObject(jsonString).getJSONArray(RecipeByIngredientEntry.RESULT), typeModel
+                )
+            }
         }
     }
 
@@ -88,6 +98,8 @@ class ParseDataWithJson {
                 TypeModel.STEP -> jsonObject?.let(parser::parseJsonToStep)
                 TypeModel.RECIPE_SIMILAR -> jsonObject?.let(parser::parseJsonToRecipeSimilar)
                 TypeModel.DETAIL_INGREDIENT -> jsonObject?.let(parser::parseJsonToIngredientDetail)
+                TypeModel.SEARCH_BY_INGREDIENT -> jsonObject?.let(parser::parseJsonToIngredientDetail)
+                TypeModel.SEARCH_BY_NAME -> jsonObject?.let(parser::parseJsonToIngredientDetail)
             }
         } catch (e: Exception) {
             null

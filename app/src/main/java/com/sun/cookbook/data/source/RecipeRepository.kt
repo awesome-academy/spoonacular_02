@@ -35,14 +35,27 @@ class RecipeRepository private constructor(
         remote.getDataRecipeByIngredient(nameIngredient, listener)
     }
 
+    fun searchRecipeByIngredient(
+        ingredients: String, listener: OnFetchDataJsonListener<MutableList<RecipeByIngredient>>
+    ) {
+        remote.searchRecipeByIngredient(ingredients, listener)
+    }
+
+    fun searchRecipeByName(
+        name: String,
+        listener: OnFetchDataJsonListener<MutableList<RecipeByIngredient>>
+    ) {
+        remote.searchRecipeByName(name, listener)
+    }
+
     companion object {
         private var INSTANCE: RecipeRepository? = null
-        fun getInstance(): RecipeRepository {
+        fun getInstance(
+            remote: RecipeDataSource.Remote,
+            local: RecipeDataSource.Local
+        ): RecipeRepository {
             return INSTANCE ?: synchronized(this) {
-                INSTANCE ?: RecipeRepository(
-                    remote = RecipeRemoteDataSource.instance,
-                    local = RecipeLocalDataSource.instance
-                ).also { INSTANCE = it }
+                INSTANCE ?: RecipeRepository(remote, local).also { INSTANCE = it }
             }
         }
     }

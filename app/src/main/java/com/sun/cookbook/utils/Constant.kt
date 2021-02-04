@@ -14,7 +14,7 @@ object Constant {
     const val NUMBER_RECIPE = "?number=5"
     const val NUMBER_RECIPE_TEN = "?number=10"
     const val RANDOM_RECIPE = "random"
-    const val API_KEY_RANDOM = "&rapidapi-key="
+    const val API_KEY = "&rapidapi-key="
     const val API_KEY_DETAIL = "?rapidapi-key="
     const val API_VALUE = BuildConfig.API_VALUE
     const val RECIPE_INFORMATION = "/information"
